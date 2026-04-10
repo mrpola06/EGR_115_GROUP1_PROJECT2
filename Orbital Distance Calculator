@@ -2,8 +2,9 @@ Group Project 2 - Orbital Distance Calculator
 Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
 
 WHAT WE NEED
+cintripital acceleration - Isabel
 grvitational accelerations - Odin
 orbital period - Mac
 inputs: mass of the planet, velocity or distance choice, distance value, velocity value-Hunter Logan
-loops: determine position values - Griffin, isabel
+loops: determine position values - Griffin, Isabel
 plotting: plot the data into a 3d graph - Aiden Murphrey
