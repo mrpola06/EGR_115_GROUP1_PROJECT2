@@ -1,4 +1,10 @@
 Group Project 2 - Orbital Distance Calculator
-Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig,
-Aiden Murphrey, Isabel Scalia
+Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
 hi
+
+WHAT WE NEED
+grvitational accelerations
+orbital period
+inputs: mass of the planet, velocity or distance choice, distance value, velocity value
+loops: determine position values
+
