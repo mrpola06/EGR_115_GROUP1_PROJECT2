@@ -1,12 +1,14 @@
-Group Project 2 - Orbital Distance Calculator
-Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
+%% Group Project 2 - Orbital Distance Calculator
+% Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
 
-WHAT WE NEED
+%% Physics Connection - Odin and Mac
 cintripital acceleration - Odin
+
 grvitational accelerations - Odin
+
 orbital period - Mac
 
-inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value-Hunter Logan
+%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value-Hunter Logan
 mass = input('Enter planet mass (kg): ');
 if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0
     error('Mass must be a positive numeric scalar (kg).');
@@ -38,5 +40,7 @@ end
 % Output: mass (kg), choice ('r' or 'v'), r (m) or v (m/s)
 disp(struct('mass',mass,'mass_units','kg','choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s'));
 
-loops: determine position values - Griffin, Isabel
-plotting: plot the data into a 3d graph - Aiden Murphrey
+%% Loops: determine position values - Griffin, Isabel
+
+
+%% Plotting: plot the data into a 3d graph - Aiden Murphrey
