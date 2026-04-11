@@ -5,6 +5,38 @@ WHAT WE NEED
 cintripital acceleration - Odin
 grvitational accelerations - Odin
 orbital period - Mac
+
 inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value-Hunter Logan
+mass = input('Enter planet mass (kg): ');
+if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0
+    error('Mass must be a positive numeric scalar (kg).');
+end
+
+% Choice using menu
+sel = menu('Provide which quantity?', 'Distance d [m]', 'Velocity v [m/s]');
+if sel == 0
+    error('No selection made.');
+end
+
+% Read selected value
+if sel == 1
+    r = input('Enter distance r (m): ');
+    if isempty(r) || ~isnumeric(r) || ~isscalar(r) || r <= 0
+        error('Distance must be a positive numeric scalar (m).');
+    end
+    v = [];
+    choice = 'r';
+else
+    v = input('Enter velocity v (m/s): ');
+    if isempty(v) || ~isnumeric(v) || ~isscalar(v)
+        error('Velocity must be a numeric scalar (m/s).');
+    end
+    r = [];
+    choice = 'v';
+end
+
+% Output: mass (kg), choice ('r' or 'v'), r (m) or v (m/s)
+disp(struct('mass',mass,'mass_units','kg','choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s'));
+
 loops: determine position values - Griffin, Isabel
 plotting: plot the data into a 3d graph - Aiden Murphrey
