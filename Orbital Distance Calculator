@@ -40,7 +40,28 @@ end
 % Output: mass (kg), choice ('r' or 'v'), r (m) or v (m/s)
 disp(struct('mass',mass,'mass_units','kg','choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s'));
 
-%% Loops: determine position values - Griffin, Isabel
+%% Loops - Griffin, Isabel
 
+% Loop for if the user decides to give the distance - Isabel
+if sel == 1
+
+    % Create a range of radii around user input
+    n = 200;
+    r_vec = linspace(r, 10*radius, n);
+
+    v_vec = zeros(1,n);
+
+    % Loop builds velocity dataset
+    for i = 1:n
+        v_vec(i) = orbitalVelocity(mass, r_vec(i));
+    end
+
+    % Store for plotting
+    data.r = r_vec;
+    data.v = v_vec;
+
+end
+
+% Loop for if the user decides to give the Velocity - Griffin
 
 %% Plotting: plot the data into a 3d graph - Aiden Murphrey
