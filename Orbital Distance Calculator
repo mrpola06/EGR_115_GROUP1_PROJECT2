@@ -63,5 +63,21 @@ if sel == 1
 end
 
 % Loop for if the user decides to give the Velocity - Griffin
+if sel == 2
+
+    % Create a range of speeds based on input
+    n = 50; %change as needed
+    v_vec = linspace(v*0.95, v*1.05, n);
+
+    r_vec = zeros(1,n);
+
+    %Building radius dataset
+    for i =1:n
+        r_vec(i) = orbitalRadius(g, v_vec(i));
+    end
+
+    data.r = r_vec;
+    data.v = v_vec;
+
 
 %% Plotting: plot the data into a 3d graph - Aiden Murphrey
