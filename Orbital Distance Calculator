@@ -2,9 +2,22 @@
 % Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
 
 %% Physics Connection - Odin and Mac
-% centripetal acceleration - Odin
+% Gravitational Acceleration Function (With Given Distance from Center of Planet) - Odin
+function g = grav_accel(mass, dist) % mass in kg and dist in m
+    g = (G * mass)/(dist ^ 2); % when solving for velocity, do v = sqrt(g * r)
+end
 
-% gravitational acceleration - Odin
+% Ideal Distance Function (With Given Velocity) - Odin
+function dist = ideal_dist(mass, vel) % vel in m/s
+    dist = (G * mass)/(vel ^ 2); % when solving for distance from planet surface, subtract planet radius (r) from dist_from_center
+end
+
+% Gravitational Acceleration/Ideal Distance Function Calls (will need to be repositioned in the code, but should work as intended) - Odin
+grav = gravl_accel(mass, r);
+
+% OR
+
+dist_from_center = ideal_dist(mass, v);
 
 % orbital period - Mac
 
