@@ -2,82 +2,118 @@
 % Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
 
 %% Physics Connection - Odin and Mac
-cintripital acceleration - Odin
+% centripetal acceleration - Odin
 
-grvitational accelerations - Odin
+% gravitational acceleration - Odin
 
-orbital period - Mac
+% orbital period - Mac
 
-%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value-Hunter Logan
+G = 6.67430e-11;
+
+%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value - Hunter Logan
 mass = input('Enter planet mass (kg): ');
 if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0
     error('Mass must be a positive numeric scalar (kg).');
 end
 
-% Choice using menu
-sel = menu('Provide which quantity?', 'Distance d [m]', 'Velocity v [m/s]');
+planet_radius = input('Enter planet radius (m): ');
+if isempty(planet_radius) || ~isnumeric(planet_radius) || ~isscalar(planet_radius) || planet_radius <= 0
+    error('Planet radius must be a positive numeric scalar (m).');
+end
+
+sel = menu('Provide which quantity?', 'Distance r [m]', 'Velocity v [m/s]');
 if sel == 0
     error('No selection made.');
 end
 
-% Read selected value
 if sel == 1
-    r = input('Enter distance r (m): ');
-    if isempty(r) || ~isnumeric(r) || ~isscalar(r) || r <= 0
-        error('Distance must be a positive numeric scalar (m).');
+    r = input('Enter orbital distance r from planet center (m): ');
+    if isempty(r) || ~isnumeric(r) || ~isscalar(r) || r <= planet_radius
+        error('Orbital distance must be a numeric scalar greater than planet radius.');
     end
-    v = [];
+    v = sqrt(G*mass/r);
     choice = 'r';
 else
     v = input('Enter velocity v (m/s): ');
     if isempty(v) || ~isnumeric(v) || ~isscalar(v)
         error('Velocity must be a numeric scalar (m/s).');
     end
-    r = [];
+    r = G*mass/(v^2);
+    if r <= planet_radius
+        error('Computed orbit is below planet radius (not a valid orbit).');
+    end
     choice = 'v';
 end
 
-% Output: mass (kg), choice ('r' or 'v'), r (m) or v (m/s)
-disp(struct('mass',mass,'mass_units','kg','choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s'));
+disp(struct('mass',mass,'mass_units','kg','planet_radius',planet_radius,'choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s'));
 
 %% Loops - Griffin, Isabel
 
-% Loop for if the user decides to give the distance - Isabel
 if sel == 1
 
-    % Create a range of radii around user input
     n = 200;
-    r_vec = linspace(r, 10*radius, n);
+    r_vec = linspace(r, 10*r, n);
 
     v_vec = zeros(1,n);
 
-    % Loop builds velocity dataset
     for i = 1:n
-        v_vec(i) = orbitalVelocity(mass, r_vec(i));
+        v_vec(i) = sqrt(G*mass./r_vec(i));
     end
 
-    % Store for plotting
     data.r = r_vec;
     data.v = v_vec;
 
 end
 
-% Loop for if the user decides to give the Velocity - Griffin
 if sel == 2
 
-    % Create a range of speeds based on input
-    n = 50; %change as needed
+    n = 50;
     v_vec = linspace(v*0.95, v*1.05, n);
 
     r_vec = zeros(1,n);
 
-    %Building radius dataset
-    for i =1:n
-        r_vec(i) = orbitalRadius(g, v_vec(i));
+    for i = 1:n
+        r_vec(i) = G*mass./(v_vec(i).^2);
     end
 
     data.r = r_vec;
     data.v = v_vec;
 
+end
 
-%% Plotting: plot the data into a 3d graph - Aiden Murphrey
+%% 3D Plotting: plot the data into a 3d graph - Aiden Murphrey
+
+figure
+
+R_planet = planet_radius;
+[xs,ys,zs] = sphere(50);
+
+surf(R_planet*xs, R_planet*ys, R_planet*zs,...
+    'FaceColor',[0.2 0.6 1],...
+    'EdgeColor','none')
+
+hold on
+
+r_orbit = r;
+
+t = linspace(0,2*pi,length(data.r));
+
+x_orbit = r_orbit .* cos(t);
+y_orbit = r_orbit .* sin(t);
+z_orbit = zeros(size(t));
+
+plot3(x_orbit, y_orbit, z_orbit,'r','LineWidth',2)
+
+scatter3(x_orbit(1), y_orbit(1), z_orbit(1),100,'filled','y')
+
+axis equal
+grid on
+xlabel('x (m)')
+ylabel('y (m)')
+zlabel('z (m)')
+
+camlight
+lighting gouraud
+material dull
+
+view(3)
