@@ -1,132 +1,117 @@
-%% Group Project 2 - Orbital Distance Calculator
-% Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
+%% Group Project 2 - Orbital Distance Calculator 
+% Group Members - Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia 
 
-%% Physics Connection - Odin and Mac
-% Gravitational Acceleration Function (With Given Distance from Center of Planet) - Odin
-function g = grav_accel(mass, dist) % mass in kg and dist in m
-    g = (G * mass)/(dist ^ 2); % when solving for velocity, do v = sqrt(g * r)
+% Define Constants 
+G = 6.67430e-11; 
+
+%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value - Hunter Logan 
+mass = input('Enter planet mass (kg): '); 
+if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0 
+    error('Mass must be a positive numeric scalar (kg).'); 
+end 
+
+planet_radius = input('Enter planet radius (m): '); 
+if isempty(planet_radius) || ~isnumeric(planet_radius) || ~isscalar(planet_radius) || planet_radius <= 0 
+    error('Planet radius must be a positive numeric scalar (m).'); 
+end 
+
+sel = menu('Provide which quantity?', 'Distance r [m]', 'Velocity v [m/s]'); 
+if sel == 0 
+    error('No selection made.'); 
+end 
+
+if sel == 1 
+    r = input('Enter orbital distance r from planet center (m): '); 
+    if isempty(r) || ~isnumeric(r) || ~isscalar(r) || r <= planet_radius 
+        error('Orbital distance must be a numeric scalar greater than planet radius.'); 
+    end 
+else 
+    v = input('Enter velocity v (m/s): '); 
+    if isempty(v) || ~isnumeric(v) || ~isscalar(v) 
+        error('Velocity must be a numeric scalar (m/s).'); 
+    end 
+end 
+
+%% Physics Connection - Odin and Mac 
+if sel == 1 
+    grav = grav_accel(mass, r, G); 
+    T = orbital_period(mass, r, G); 
+    v = sqrt(G*mass/r); 
+    choice = 'r'; 
+else 
+    r = ideal_dist(mass, v, G); 
+    grav = grav_accel(mass, r, G); 
+    T = orbital_period(mass, r, G); 
+    if r <= planet_radius 
+        error('Computed orbit is below planet radius (not a valid orbit).'); 
+    end 
+    choice = 'v'; 
+end 
+
+% Display results
+disp(struct('mass',mass,'mass_units','kg','planet_radius',planet_radius,'choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s','grav',grav,'grav_units','m/s^2','T',T,'T_units','s')); 
+
+%% Loops - Griffin, Isabel 
+if sel == 1 
+    n = 200; 
+    r_vec = linspace(r, 10*r, n); 
+    v_vec = zeros(1,n); 
+    for i = 1:n 
+        v_vec(i) = sqrt(G*mass./r_vec(i)); 
+    end 
+    data.r = r_vec; 
+    data.v = v_vec; 
+end 
+
+if sel == 2 
+    n = 50; 
+    v_vec = linspace(v*0.95, v*1.05, n); 
+    r_vec = zeros(1,n); 
+    for i = 1:n 
+        r_vec(i) = G*mass./(v_vec(i).^2); 
+    end 
+    data.r = r_vec; 
+    data.v = v_vec; 
+end 
+
+%% 3D Plotting: plot the data into a 3d graph - Aiden Murphrey 
+figure 
+R_planet = planet_radius; 
+[xs,ys,zs] = sphere(50); 
+surf(R_planet*xs, R_planet*ys, R_planet*zs,... 
+    'FaceColor',[0.2 0.6 1],... 
+    'EdgeColor','none') 
+hold on 
+
+% Generate orbit points
+t = linspace(0, 2*pi, 100); 
+x_orbit = r * cos(t); 
+y_orbit = r * sin(t); 
+z_orbit = zeros(size(t)); 
+
+% Plot orbit
+plot3(x_orbit, y_orbit, z_orbit,'r','LineWidth',2) 
+scatter3(x_orbit(1), y_orbit(1), z_orbit(1),100,'filled','y') 
+axis equal 
+grid on 
+xlabel('x (m)') 
+ylabel('y (m)') 
+zlabel('z (m)') 
+camlight 
+lighting gouraud 
+material dull 
+view(3) 
+
+% --- Functions --- 
+
+function g = grav_accel(mass, dist, G) 
+    g = (G * mass)/(dist ^ 2); 
+end 
+
+function dist = ideal_dist(mass, vel, G) 
+    dist = (G * mass)/(vel ^ 2); 
+end 
+
+function T = orbital_period(mass, dist, G) 
+    T = 2*pi*sqrt((dist^3)/(G*mass)); 
 end
-
-% Ideal Distance Function (With Given Velocity) - Odin
-function dist = ideal_dist(mass, vel) % vel in m/s
-    dist = (G * mass)/(vel ^ 2); % when solving for distance from planet surface, subtract planet radius (r) from dist_from_center
-end
-
-% Gravitational Acceleration/Ideal Distance Function Calls (will need to be repositioned in the code, but should work as intended) - Odin
-grav = gravl_accel(mass, r);
-
-% OR
-
-dist_from_center = ideal_dist(mass, v);
-
-% orbital period - Mac
-
-G = 6.67430e-11;
-
-%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value - Hunter Logan
-mass = input('Enter planet mass (kg): ');
-if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0
-    error('Mass must be a positive numeric scalar (kg).');
-end
-
-planet_radius = input('Enter planet radius (m): ');
-if isempty(planet_radius) || ~isnumeric(planet_radius) || ~isscalar(planet_radius) || planet_radius <= 0
-    error('Planet radius must be a positive numeric scalar (m).');
-end
-
-sel = menu('Provide which quantity?', 'Distance r [m]', 'Velocity v [m/s]');
-if sel == 0
-    error('No selection made.');
-end
-
-if sel == 1
-    r = input('Enter orbital distance r from planet center (m): ');
-    if isempty(r) || ~isnumeric(r) || ~isscalar(r) || r <= planet_radius
-        error('Orbital distance must be a numeric scalar greater than planet radius.');
-    end
-    v = sqrt(G*mass/r);
-    choice = 'r';
-else
-    v = input('Enter velocity v (m/s): ');
-    if isempty(v) || ~isnumeric(v) || ~isscalar(v)
-        error('Velocity must be a numeric scalar (m/s).');
-    end
-    r = G*mass/(v^2);
-    if r <= planet_radius
-        error('Computed orbit is below planet radius (not a valid orbit).');
-    end
-    choice = 'v';
-end
-
-disp(struct('mass',mass,'mass_units','kg','planet_radius',planet_radius,'choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s'));
-
-%% Loops - Griffin, Isabel
-
-if sel == 1
-
-    n = 200;
-    r_vec = linspace(r, 10*r, n);
-
-    v_vec = zeros(1,n);
-
-    for i = 1:n
-        v_vec(i) = sqrt(G*mass./r_vec(i));
-    end
-
-    data.r = r_vec;
-    data.v = v_vec;
-
-end
-
-if sel == 2
-
-    n = 50;
-    v_vec = linspace(v*0.95, v*1.05, n);
-
-    r_vec = zeros(1,n);
-
-    for i = 1:n
-        r_vec(i) = G*mass./(v_vec(i).^2);
-    end
-
-    data.r = r_vec;
-    data.v = v_vec;
-
-end
-
-%% 3D Plotting: plot the data into a 3d graph - Aiden Murphrey
-
-figure
-
-R_planet = planet_radius;
-[xs,ys,zs] = sphere(50);
-
-surf(R_planet*xs, R_planet*ys, R_planet*zs,...
-    'FaceColor',[0.2 0.6 1],...
-    'EdgeColor','none')
-
-hold on
-
-r_orbit = r;
-
-t = linspace(0,2*pi,length(data.r));
-
-x_orbit = r_orbit .* cos(t);
-y_orbit = r_orbit .* sin(t);
-z_orbit = zeros(size(t));
-
-plot3(x_orbit, y_orbit, z_orbit,'r','LineWidth',2)
-
-scatter3(x_orbit(1), y_orbit(1), z_orbit(1),100,'filled','y')
-
-axis equal
-grid on
-xlabel('x (m)')
-ylabel('y (m)')
-zlabel('z (m)')
-
-camlight
-lighting gouraud
-material dull
-
-view(3)
