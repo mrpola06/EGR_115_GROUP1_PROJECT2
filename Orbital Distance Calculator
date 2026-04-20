@@ -21,9 +21,10 @@ if sel == 0
 end 
 
 if sel == 1 
-    r = input('Enter orbital distance r from planet center (m): '); 
+    r = input('Enter orbital distance r from planet surface (m): '); 
+    r = r + planet_radius;
     if isempty(r) || ~isnumeric(r) || ~isscalar(r) || r <= planet_radius 
-        error('Orbital distance must be a numeric scalar greater than planet radius.'); 
+        error('Orbital distance must be a numeric scalar greater than zero.'); 
     end 
 else 
     v = input('Enter velocity v (m/s): '); 
