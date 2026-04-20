@@ -4,7 +4,7 @@
 % Define Constants 
 G = 6.67430e-11; 
 
-%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value - Hunter Logan 
+%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value  
 mass = input('Enter planet mass (kg): '); 
 if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0 
     error('Mass must be a positive numeric scalar (kg).'); 
@@ -33,7 +33,7 @@ else
     end 
 end 
 
-%% Physics Connection - Odin and Mac 
+%% Physics Connection 
 if sel == 1 
     grav = grav_accel(mass, r, G); 
     T = orbital_period(mass, r, G); 
@@ -52,7 +52,7 @@ end
 % Display results
 disp(struct('mass',mass,'mass_units','kg','planet_radius',planet_radius,'choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s','grav',grav,'grav_units','m/s^2','T',T,'T_units','s')); 
 
-%% Loops - Griffin, Isabel 
+%% Loops 
 if sel == 1 
     n = 200; 
     r_vec = linspace(r, 10*r, n); 
@@ -75,7 +75,7 @@ if sel == 2
     data.v = v_vec; 
 end 
 
-%% 3D Plotting: plot the data into a 3d graph - Aiden Murphrey 
+%% 3D Plotting: plot the data into a 3d graph 
 figure 
 R_planet = planet_radius; 
 [xs,ys,zs] = sphere(50); 
@@ -84,15 +84,18 @@ surf(R_planet*xs, R_planet*ys, R_planet*zs,...
     'EdgeColor','none') 
 hold on 
 
+
 % Generate orbit points
 t = linspace(0, 2*pi, 100); 
-x_orbit = r * cos(t); 
-y_orbit = r * sin(t); 
-z_orbit = zeros(size(t)); 
+
+x_vals = x_orbit(t, r);
+y_vals = y_orbit(t, r);
+z_vals = z_orbit(t);
 
 % Plot orbit
-plot3(x_orbit, y_orbit, z_orbit,'r','LineWidth',2) 
-scatter3(x_orbit(1), y_orbit(1), z_orbit(1),100,'filled','y') 
+plot3(x_vals, y_vals, z_vals,'r','LineWidth',2) 
+scatter3(x_vals(1), y_vals(1), z_vals(1),100,'filled','y') 
+
 axis equal 
 grid on 
 xlabel('x (m)') 
@@ -103,7 +106,7 @@ lighting gouraud
 material dull 
 view(3) 
 
-% --- Functions --- 
+%% Functions 
 
 function g = grav_accel(mass, dist, G) 
     g = (G * mass)/(dist ^ 2); 
@@ -115,4 +118,16 @@ end
 
 function T = orbital_period(mass, dist, G) 
     T = 2*pi*sqrt((dist^3)/(G*mass)); 
+end
+
+function x_orbit = x_orbit(t, r)
+    x_orbit = r * cos(t);
+end
+
+function y_orbit = y_orbit(t, r)
+    y_orbit = r * sin(t);
+end
+
+function z_orbit = z_orbit(t)
+    z_orbit = zeros(size(t));
 end
