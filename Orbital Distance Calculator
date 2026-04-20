@@ -50,7 +50,12 @@ else
 end 
 
 % Display results
-disp(struct('mass',mass,'mass_units','kg','planet_radius',planet_radius,'choice',choice,'r',r,'r_units','m','v',v,'v_units','m/s','grav',grav,'grav_units','m/s^2','T',T,'T_units','s')); 
+fprintf('mass: %.3f kg\n', mass)
+fprintf('planet_radius: %.0f m\n', planet_radius)
+fprintf('choice: %s, r: %.3f m\n', choice, r)
+fprintf('v: %.2f m/s\n', v)
+fprintf('grav: %.5f m/s^2\n', grav)
+fprintf('T: %.3f s\n', T)
 
 %% Loops 
 if sel == 1 
