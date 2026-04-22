@@ -7,15 +7,61 @@ clear; clc; close all;
 G = 6.67430e-11; 
 
 %% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value  
-mass = input('Enter planet mass (kg): '); 
-if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0 
-    error('Mass must be a positive numeric scalar (kg).'); 
-end 
+disp(sun=1, mercury=2, venus=3, mars=4, jupiter=5, saturn=6, uranus=7,Neptune=8,Earth=9)
+planet = input('Enter 0-9 for a preset planet (0 for custom): ');
 
-planet_radius = input('Enter planet radius (m): '); 
-if isempty(planet_radius) || ~isnumeric(planet_radius) || ~isscalar(planet_radius) || planet_radius <= 0 
-    error('Planet radius must be a positive numeric scalar (m).'); 
-end 
+if planet == 0
+    % Custom planet
+    mass = input('Enter planet mass (kg): ');
+    if isempty(mass) || ~isnumeric(mass) || ~isscalar(mass) || mass <= 0
+        error('Mass must be a positive numeric scalar (kg).');
+    end
+
+    planet_radius = input('Enter planet radius (m): ');
+    if isempty(planet_radius) || ~isnumeric(planet_radius) || ...
+       ~isscalar(planet_radius) || planet_radius <= 0
+        error('Planet radius must be a positive numeric scalar (m).');
+    end
+
+elseif planet == 1
+    mass = 1.9891e30;        % sun
+    planet_radius = 696340000;
+
+elseif planet == 2
+    mass = 3.30e23;        % Mercury
+    planet_radius = 2.44e6;
+
+elseif planet == 3
+    mass = 4.87e24;        % Venus
+    planet_radius = 6.05e6;
+
+elseif planet == 4
+    mass = 6.42e23;        % Mars
+    planet_radius = 3.39e6;
+
+elseif planet == 5
+    mass = 1.90e27;        % Jupiter
+    planet_radius = 6.99e7;
+
+elseif planet == 6
+    mass = 5.68e26;        % Saturn
+    planet_radius = 5.82e7;
+
+elseif planet == 7
+    mass = 8.68e25;        % Uranus
+    planet_radius = 2.54e7;
+
+elseif planet == 8
+    mass = 1.02e26;        % Neptune
+    planet_radius = 2.46e7;
+
+elseif planet == 9
+    mass = 5.97219e24;        % Earth
+    planet_radius = 6371000;
+
+else
+    error('Invalid selection. Enter an integer from 0 to 9.');
+end
 
 sel = menu('Provide which quantity?', 'Distance from center of earth to satellite [m]', 'Velocity [m/s]'); 
 if sel == 0 
