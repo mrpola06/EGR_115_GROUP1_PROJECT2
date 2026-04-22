@@ -7,7 +7,7 @@ clear; clc; close all;
 G = 6.67430e-11; 
 
 %% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value  
-disp(sun=1, mercury=2, venus=3, mars=4, jupiter=5, saturn=6, uranus=7,Neptune=8,Earth=9)
+disp('sun=1, mercury=2, venus=3, mars=4, jupiter=5, saturn=6, uranus=7,Neptune=8,Earth=9')
 planet = input('Enter 0-9 for a preset planet (0 for custom): ');
 
 if planet == 0
@@ -25,7 +25,7 @@ if planet == 0
 
 elseif planet == 1
     mass = 1.9891e30;        % sun
-    planet_radius = 696340000;
+    planet_radius = 6.957e8;
 
 elseif planet == 2
     mass = 3.30e23;        % Mercury
@@ -63,7 +63,7 @@ else
     error('Invalid selection. Enter an integer from 0 to 9.');
 end
 
-sel = menu('Provide which quantity?', 'Distance from center of earth to satellite [m]', 'Velocity [m/s]'); 
+sel = menu('Provide which quantity?', 'Orbital Radius [m]', 'Velocity [m/s]'); 
 if sel == 0 
     error('No selection made.'); 
 end 
@@ -98,12 +98,12 @@ else
 end 
 
 % Display results
-fprintf('mass: %.2f kg\n', mass)
-fprintf('planet_radius: %.2f m\n', planet_radius)
-fprintf('choice: %s, r: %.2f m\n', choice, r)
-fprintf('v: %.2f m/s\n', v)
-fprintf('grav: %.2f m/s^2\n', grav)
-fprintf('T: %.2f s\n', T)
+fprintf('mass: %.2e kg\n', mass)
+fprintf('planet_radius: %.2e m\n', planet_radius)
+fprintf('choice: %s, r: %.2e m\n', choice, r)
+fprintf('v: %.2e m/s\n', v)
+fprintf('grav: %.2e m/s^2\n', grav)
+fprintf('T: %.2e s\n', T)
 
 %% Loops 
 if sel == 1 
