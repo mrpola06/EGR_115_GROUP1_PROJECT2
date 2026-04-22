@@ -50,12 +50,12 @@ else
 end 
 
 % Display results
-fprintf('mass: %.2f kg\n', mass)
-fprintf('planet_radius: %.2f m\n', planet_radius)
-fprintf('choice: %s, r: %.2f m\n', choice, r)
-fprintf('v: %.2f m/s\n', v)
-fprintf('grav: %.2f m/s^2\n', grav)
-fprintf('T: %.2f s\n', T)
+fprintf('mass: %.2e kg\n', mass)
+fprintf('planet_radius: %.2e m\n', planet_radius)
+fprintf('choice: %s, r: %.2e m\n', choice, r)
+fprintf('v: %.2e m/s\n', v)
+fprintf('grav: %.2e m/s^2\n', grav)
+fprintf('T: %.2e s\n', T)
 
 %% Loops 
 if sel == 1 
