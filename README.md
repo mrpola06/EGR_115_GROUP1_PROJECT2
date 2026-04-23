@@ -62,19 +62,28 @@ I WILL ADD ONCE THE CODE IS 100% DONE
 ## Physics Connection
 
 **Newton's law of gravitation (used for surface gravity):**
+
 $$g = \frac{GM}{r^2}$$
 
 **Orbital velocity (circular orbit):**
+
 $$v = \sqrt{\frac{GM}{r}}$$
 
 **Orbital radius from velocity:**
+
 $$r = \frac{GM}{v^2}$$
 
 **Orbital period (Kepler’s 3rd law form):**
+
 $$T = 2\pi \sqrt{\frac{r^3}{GM}}$$
 
 **Circular orbit parametric equations:**
-$$x = r \cdot \cos(t), \quad y = r \cdot \sin(t), \quad z = 0$$
+
+$$x = r \cdot \cos(t)
+
+\quad y = r \cdot \sin(t)
+
+\quad z = 0$$
 
 #### Variable Definitions
 G = Gravitational Constant
