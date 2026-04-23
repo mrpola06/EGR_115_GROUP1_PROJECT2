@@ -79,11 +79,11 @@ $$T = 2\pi \sqrt{\frac{r^3}{GM}}$$
 
 **Circular orbit parametric equations:**
 
-$$x = r \cdot \cos(t)
+$$x = r \cdot \cos(t)$$
 
-\quad y = r \cdot \sin(t)
+$$\quad y = r \cdot \sin(t)$$
 
-\quad z = 0$$
+$$\quad z = 0$$
 
 #### Variable Definitions
 G = Gravitational Constant
