@@ -71,10 +71,12 @@ $r = GM / v^2$
 $T = 2π * sqrt(r^3 / (GM))$
 ### Circular orbit parametric equations:
 $x = r * cos(t)$
+
 $y = r * sin(t)$
+
 $z = 0$
 
-##### Variable Definitions
+#### Variable Definitions
 G = Gravitational Constant
 
 M = mass of central body (chosen planet)
