@@ -18,11 +18,11 @@ To do this the code takes these user inputs:
 - Custom Radius of the planet
 
 Then a menu opens up asking if the user would like to provide either:
-- Distance away from the surface
+- Distance away from the surface of chosen planet
   
 or
 
-- Orbiting Velocity
+- Velocity of the orbiting body
 
 The code takes these user inputs and uses the basic gravitational equations to create data to be used for a 3d plot of the orbiting object and its path around the chosen planet.
 
