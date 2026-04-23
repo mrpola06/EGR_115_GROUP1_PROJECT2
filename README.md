@@ -1,4 +1,4 @@
-# Orbital Distance or Velocity Calculator - EGR115: Group 1
+# Orbital Distance or Orbital Velocity Calculator - EGR115: Group 1
 ## Group Members
 Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Menig, Aiden Murphrey, Isabel Scalia
 
