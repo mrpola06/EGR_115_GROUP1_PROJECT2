@@ -13,14 +13,16 @@ This code has the ability to compute:
 - Orbital distance: The distance of orbiting object from the surface of the planet
 
 To do this the code takes these user inputs:
-- Mass of the Planet
-- Radius of the planet
+- Preset planet values (mass and radius)
+- Custom Mass of the Planet
+- Custom Radius of the planet
 
-Then a menue opens up asking if the user would like to provide either:
-1. Distance away from the surface
-2. Orbiting Velocity
+Then a menu opens up asking if the user would like to provide either:
+- Distance away from the surface
+or
+- Orbiting Velocity
 
-The code takes this data and creates a 3d plot of the orbiting object and its path around the chosen planet.
+The code takes these user inputs and uses the basic gravitational equations to create data to be used for a 3d plot of the orbiting object and its path around the chosen planet.
 
 ## Project Components
 The Orbital distance or Velocity calculator is composed of one MATLAB file with 4 defined sections.
