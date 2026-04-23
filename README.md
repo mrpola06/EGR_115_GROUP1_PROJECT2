@@ -1,6 +1,6 @@
 # Orbital Distance or Orbital Velocity Calculator - EGR115: Group 1
 ## Group Members
-Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Menig, Aiden Murphrey, Isabel Scalia
+Odin Ebert, Griffin Heil, Hunter Logan, Maccabee Meinig, Aiden Murphrey, Isabel Scalia
 
 ## Overview Of The Project
 This MATLAB project is an Orbital Distance or Orbital Velocity Calculator that models basic orbital mechanics around a chosen celestial body assuming a circular orbit. The program allows users to choose from preset planetary values or a custom planetary body by inputting mass and radius, then select whether they want to solve for the orbital velocity or orbital distanceUsing these inputs, the code uses basic gravity equations to calculate gravitational acceleration, orbital velocity, orbital radius, and orbital period. 
