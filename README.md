@@ -76,11 +76,17 @@ z = 0
 
 ### Variable Definitions
 G = Gravitational Constant
+
 M = mass of central body (chosen planet)
+
 v  = orbital velocity
+
 r = orbital radius (distance from center of planet)
+
 g = Gravitational acceleration at distance r
+
 T = Orbital Period (time for one full orbit)
+
 t = time/ angle variable for plotting
 
 
