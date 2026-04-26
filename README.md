@@ -56,9 +56,8 @@ The Orbital distance or Velocity calculator is composed of one MATLAB file with 
 6. Z Orbit Values
 
 ## Example Code Output
-
-I WILL ADD ONCE THE CODE IS 100% DONE
-
+EXAMPLE PLOT
+![Code Animation](CODE_ANIMATION.gif)
 ## Physics Connection
 
 **Newton's law of gravitation (used for surface gravity):**
