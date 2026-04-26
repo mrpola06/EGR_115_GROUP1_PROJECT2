@@ -62,7 +62,7 @@ The Orbital distance or Velocity calculator is composed of one MATLAB file with 
 
 ### Inputs and Outputs for Animation
 
-Given Inputs:
+### Given Inputs:
 
 Planet: Earth - Preset 9
 
@@ -70,17 +70,17 @@ Mass: $5.97 \times 10^{24}\ \text{kg}$
 
 Planet Radius: $6.37 \times 10^{6}\ \text{m}$  
 
+Choice: $r$  
+
 Orbital Distance: $6.00 \times 10^{5}\ \text{m}$
 
-Calculated Values:
+### Calculated Values:
 
 Orbital Period: $5.79 \times 10^{3}\ \text{s}$  
 
 Gravitational Acceleration: $8.20 \times 10^{0}\ \text{m/s}^2$  
 
 Orbital Velocity: $7.56 \times 10^{3}\ \text{m/s}$  
-
-Choice: $r$  
 
 $r = 6.97 \times 10^{6}\ \text{m}$
 
