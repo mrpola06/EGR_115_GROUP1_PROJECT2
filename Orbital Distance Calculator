@@ -6,7 +6,8 @@ clear; clc; close all;
 % Define Constants 
 G = 6.67430e-11; 
 
-%% inputs: mass of the planet, radius of the planet, velocity or distance choice, distance value, velocity value  
+%% Inputs: Mass of the planet, Radius of the Planet, Velocity or Distance Choice, Distance Value, Velocity Value
+
 disp('sun=1, mercury=2, venus=3, mars=4, jupiter=5, saturn=6, uranus=7,Neptune=8,Earth=9')
 planet = input('Enter 0-9 for a preset planet (0 for custom): ');
 
@@ -80,8 +81,7 @@ else
         error('Velocity must be a numeric scalar (m/s).'); 
     end 
 end 
-
-%% Physics Connection 
+%% Physics Connection
 if sel == 1 
     grav = grav_accel(mass, r, G); 
     T = orbital_period(mass, r, G); 
@@ -105,7 +105,8 @@ fprintf('v: %.2e m/s\n', v)
 fprintf('grav: %.2e m/s^2\n', grav)
 fprintf('T: %.2e s\n', T)
 
-%% Loops 
+%% Loops
+
 if sel == 1 
     n = 200; 
     r_vec = linspace(r, 10*r, n); 
@@ -127,15 +128,17 @@ if sel == 2
     data.r = r_vec; 
     data.v = v_vec; 
 end 
+%% 3D Plotting with Animation
 
-%% 3D Plotting with Layout Optimization
-figure('Color', 'w'); % Set background to white for a cleaner look
+figure('Color', 'w'); 
 
-% 1. Use tiledlayout to eliminate large outer margins
 t_layout = tiledlayout(1,1,'Padding','tight','TileSpacing','tight');
 nexttile;
 
-% Plot the Planet
+title(t_layout, 'Satellite Orbit Simulation', 'FontSize', 14, 'FontWeight', 'bold')
+subtitle(t_layout, 'Real-time Position Tracking')
+
+% PlottingPlanet
 R_planet = planet_radius; 
 [xs,ys,zs] = sphere(50); 
 surf(R_planet*xs, R_planet*ys, R_planet*zs,... 
@@ -143,32 +146,44 @@ surf(R_planet*xs, R_planet*ys, R_planet*zs,...
     'EdgeColor','none') 
 hold on 
 
-% Generate orbit points
-t_pts = linspace(0, 2*pi, 150); 
+% Generate Orbit Points
+t_pts = linspace(0, 2*pi, 300); 
 x_vals = x_orbit(t_pts, r);
 y_vals = y_orbit(t_pts, r);
 z_vals = z_orbit(t_pts);
 
-% Plot orbit
-plot3(x_vals, y_vals, z_vals,'r','LineWidth',2) 
+%Plot Static Orbit Path
+plot3(x_vals, y_vals, z_vals, 'r--', 'LineWidth', 1) 
 
-% Plot satellite current position
-scatter3(x_vals(1), y_vals(1), z_vals(1), 100, 'filled', 'y') 
+% Initialize Satellite Handle
 
-% --- Axis and View Controls ---
-axis tight           % Shrink-wraps the axes to the orbit limits
-axis equal           % Ensures the planet and orbit are not distorted
-axis vis3d           % Prevents resizing when you rotate the 3D view
+hSat = scatter3(x_vals(1), y_vals(1), z_vals(1), 100, 'filled', 'y', ...
+                'MarkerEdgeColor', 'k'); 
+
+%Axis and View Controls
+axis tight           
+axis equal           
+axis vis3d           
 grid on 
-xlabel('x (m)') 
-ylabel('y (m)') 
-zlabel('z (m)') 
+xlabel('x (m)'); ylabel('y (m)'); zlabel('z (m)') 
 
 % Lighting for 3D effect
 camlight 
 lighting gouraud 
 material dull 
-view(3) 
+view([50 40])
+
+% Animation Loop
+
+while true
+    for k = 1:length(t_pts)
+        hSat.XData = x_vals(k);
+        hSat.YData = y_vals(k);
+        hSat.ZData = z_vals(k);
+        drawnow
+    end
+end
+
 
 %% Functions 
 
