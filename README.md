@@ -56,8 +56,32 @@ The Orbital distance or Velocity calculator is composed of one MATLAB file with 
 6. Z Orbit Values
 
 ## Example Code Output
-EXAMPLE PLOT
-![Code Animation](CODE_ANIMATION.gif)
+### Example Plot
+
+![](CODE_ANIMATION.gif)
+
+### Inputs and Outputs for Animation
+
+Given Inputs:
+
+Planet: Earth - Preset 9
+
+Mass: 5.97e+24 kg
+
+Planet Radius: 6.37e+06 m
+
+Orbital Distance: 600,000 m
+
+Calculated Values:
+
+Orbital Period: 5.79e+03 s
+
+Gravitational Acceleration: 8.20e+00 $m/s^2$
+
+Orbital Velocity: 7.56e+03 s
+
+Choice: r, r: 6.97e+06 m
+
 ## Physics Connection
 
 **Newton's law of gravitation (used for surface gravity):**
